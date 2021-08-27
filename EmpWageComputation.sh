@@ -1,22 +1,29 @@
 #!/bin/bash -x
 
-isFulltime=1;
-isParttime=2;
+isParttime=1;
+isFulltime=2;
+totalsalary=0;
 empRatePerHour=20;
-empcheck=$((RANDOM%3));
+numWorkingDays=20;
 
-case $empcheck in
-   $isFulltime)
-      empHour=8
-      ;;
-   $isParttime)
-      empHour=4
-      ;;
-   *)
-   empHour=0;
-      ;;
-esac
+for(( day=1; day<=$numWorkingDays; day++ ))
+do
+   empcheck=$((RANDOM%3));
+      case $empcheck in
+         $isFulltime)
+               empHrs=8
+               ;;
+         $isFulltime)
+               empHrs=4
+               ;;
+         *)
+         empHrs=0;
+               ;;
+      esac
 
-salary=$(($empHour*$empRatePerHour));
+salary=$(($empHrs*$empRatePerHour));
+totalSalary=$(($totalSalary+$salary));
+
+done
 
 
