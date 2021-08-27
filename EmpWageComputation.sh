@@ -30,11 +30,12 @@ while [[ $totalEmpHrs -lt $MAX_HRS_IN_MONTH &&
          $totalWorkingDays -lt $NUM_WORKING_DAYS ]]
 do
    ((totalWorkingDays++))
+   empCheck=$((RANDOM%3));
    empHrs="$( getWorkHrs $((RANDOM%3)) )"
    totalEmpHrs=$(($totalEmphrs+$empHrs))
-
+   dailywage[$totalWorkingDays]=$(($empHrs*$EMP_RATE_PER_HR))
 done
 
 totalSalary=$(($totalEmpHrs+$EMP_RATE_PER_HR));
-
+echo "Daily wage" ${dailywage[@]}
 
