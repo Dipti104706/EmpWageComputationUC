@@ -2,12 +2,16 @@
 
 isParttime=1;
 isFulltime=2;
-totalsalary=0;
+maxHrsinMonth=100;
 empRatePerHour=20;
 numWorkingDays=20;
+totalEmpHrs=0;
+totalWorkingDays=0;
 
-for(( day=1; day<=$numWorkingDays; day++ ))
+while [[ totalEmpHrs -lt $maxHrsinMonth &&
+         totalWorkingDays -lt numWorkingDays ]]
 do
+   ((numWorkingDays++))
    empcheck=$((RANDOM%3));
       case $empcheck in
          $isFulltime)
@@ -18,12 +22,10 @@ do
                ;;
          *)
          empHrs=0;
-               ;;
       esac
-
-salary=$(($empHrs*$empRatePerHour));
-totalSalary=$(($totalSalary+$salary));
+      totalEmpHrs=$(($totalEmpHrs+$empHrs))
 
 done
 
+totalsalary=$(($totalEmpHrs+$maxHrsinMonth))
 
